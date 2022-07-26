@@ -25,21 +25,20 @@ def excelwrite(dc, size):
         print('Your results have been entered into an excel workbook')
     return None
 
-def getfile():
-    root = tk.Tk()
-    root.title('Open File Dialog')
-    root.geometry('0x0')
-    root.resizable(False, False)
-    file_path = fd.askopenfilename(title='open a csv file', initialdir= '/')
-    showinfo(title='Selected file', message=file_path)
-    root.destroy()
-    return file_path
+# def getfile():
+#     root = tk.Tk()
+#     root.title('Open File Dialog')
+#     root.geometry('0x0')
+#     root.resizable(False, False)
+#     file_path = fd.askopenfilename(title='open a csv file', initialdir= '/')
+#     showinfo(title='Selected file', message=file_path)
+#     root.destroy()
+#     return file_path
 
-def main():
+def main(file):
     num = input('how many days do you want? \n')
     what = input('Is this CC or CV? ')
     what_type = 'OneLink ' + what
-    file = getfile()
     df = pd.read_csv(file)
     if int(num) > len(df):
         print('error! input size too large')

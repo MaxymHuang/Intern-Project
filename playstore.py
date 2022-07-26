@@ -4,20 +4,19 @@ import tkinter as tk
 from tkinter import filedialog as fd
 from tkinter.messagebox import showinfo
 
-def getfile():
-    root = tk.Tk()
-    root.title('Open File Dialog')
-    root.geometry('0x0')
-    root.resizable(False, False)
-    file_path = fd.askopenfilename(title='open a csv file', initialdir= '/')
-    showinfo(title='Selected file', message=file_path)
-    root.destroy()
-    return file_path
+# def getfile():
+#     root = tk.Tk()
+#     root.title('Open File Dialog')
+#     root.geometry('0x0')
+#     root.resizable(False, False)
+#     file_path = fd.askopenfilename(title='open a csv file', initialdir= '/')
+#     showinfo(title='Selected file', message=file_path)
+#     root.destroy()
+#     return file_path
 
-def getdata():
+def getdata(file):
     try:
         result = []
-        file = getfile()
         with open(file, 'r', encoding ='utf-8') as playdata:
             data_frame = list(csv.reader(playdata))
             for row in data_frame:
@@ -83,10 +82,10 @@ def excelwrite(dc, size):
         print('Your results have been entered into an excel workbook')
     return None
 
-def main():
+def main(file):
     what = input('Is this CC or CV: ')
     what_type = 'PlayStore ' + what
-    data_frame = getdata()
+    data_frame = getdata(file)
     countries = countrylist(data_frame)
     values = []
     names = ['type', 'timespan', 'all countries']

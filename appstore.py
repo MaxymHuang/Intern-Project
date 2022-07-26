@@ -66,20 +66,19 @@ def excelwrite(dc, size):
         print('Your results have been entered into an excel workbook')
     return None
 
-def getfile():
-    root = tk.Tk()
-    root.title('Open File Dialog')
-    root.geometry('0x0')
-    root.resizable(False, False)
-    file_path = fd.askopenfilename(title='open a csv file', initialdir= '/')
-    showinfo(title='Selected file', message=file_path)
-    root.destroy()
-    return file_path
+# def getfile():
+#     root = tk.Tk()
+#     root.title('Open File Dialog')
+#     root.geometry('0x0')
+#     root.resizable(False, False)
+#     file_path = fd.askopenfilename(title='open a csv file', initialdir= '/')
+#     showinfo(title='Selected file', message=file_path)
+#     root.destroy()
+#     return file_path
 
-def main():
+def main(file):
     what = input('Is this CC or CV: ')
     what_type = 'AppStore ' + what
-    file = getfile()
     stats = getdata(file)
     names = ['type', 'timespan', 'apple TV', 'Desktop', 'iPad', 'iPhone', 'iPod', 'total count']
     numbers = countup(stats)

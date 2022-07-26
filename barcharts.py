@@ -5,15 +5,15 @@ from tkinter.messagebox import showinfo
 import pandas as pd
 
 
-def getfile():
-    root = tk.Tk()
-    root.title('Open File Dialog')
-    root.geometry('0x0')
-    root.resizable(False, False)
-    file_path = fd.askopenfilename(title='open a csv file', initialdir= '/')
-    showinfo(title='Selected file', message=file_path)
-    root.destroy()
-    return file_path
+# def getfile():
+#     root = tk.Tk()
+#     root.title('Open File Dialog')
+#     root.geometry('0x0')
+#     root.resizable(False, False)
+#     file_path = fd.askopenfilename(title='open a csv file', initialdir= '/')
+#     showinfo(title='Selected file', message=file_path)
+#     root.destroy()
+#     return file_path
 
 def findavg(df, days=30):
     new_user = df['New users']
@@ -56,8 +56,7 @@ def findmonthlist(df):
     return sortedlist
 
 
-def main():
-    file = getfile()
+def main(file):
     df = pd.read_excel(file)
     avg = findavg(df)
     avg_new = avg[0]
