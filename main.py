@@ -59,7 +59,10 @@ def main():
     elif key == 3:
         onelink.main(file)
     elif key == 4:
-        barcharts.main(file)
+        try:
+            barcharts.main(file)
+        except:
+            print('Invalid file! Please try again!')
     elif key == 5:
         combine_file()
     else:

@@ -1,18 +1,5 @@
 import csv
 import xlsxwriter as xs
-import tkinter as tk
-from tkinter import filedialog as fd
-from tkinter.messagebox import showinfo
-
-# def getfile():
-#     root = tk.Tk()
-#     root.title('Open File Dialog')
-#     root.geometry('0x0')
-#     root.resizable(False, False)
-#     file_path = fd.askopenfilename(title='open a csv file', initialdir= '/')
-#     showinfo(title='Selected file', message=file_path)
-#     root.destroy()
-#     return file_path
 
 def getdata(file):
     try:
@@ -66,7 +53,7 @@ def excelwrite(dc, size):
     if YN == 'Y' or YN == 'y':
         name = list(dc.keys())
         file = input('enter desired file name: ')
-        if file.find('.xlsx') != True:
+        if file.find('.xlsx') == -1:
             file = file + '.xlsx'
         wb = xs.Workbook(file)
         ws = wb.add_worksheet('worksheet')
@@ -91,7 +78,6 @@ def main(file):
     names = ['type', 'timespan', 'all countries']
     for i in countries:
         names.append(i)
-    # print(names)
     for i in range(len(names) - 1):
         if i == 0:    
             index = findhead(data_frame, i) + ' to ' + findtail(data_frame, i)

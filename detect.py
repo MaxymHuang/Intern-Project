@@ -16,14 +16,15 @@ class findtype:
             return 4
 
 def getdata(file):
-
     result = []
-    with open(file, 'r', encoding ='utf-8') as playdata:
-        data_frame = list(csv.reader(playdata))
-        for row in data_frame:
-            result.append(row)
-    result = result[:10]
-    # print(result)
+    if file.find('.xlsx') != -1:
+        result.append('')
+    else:
+        with open(file, 'r', encoding ='utf-8') as playdata:
+            data_frame = list(csv.reader(playdata))
+            for row in data_frame:
+                result.append(row)
+        result = result[:10]
     return result
 
 def attr(file):

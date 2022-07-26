@@ -1,15 +1,12 @@
 import pandas as pd
 import xlsxwriter as xs
-import tkinter as tk
-from tkinter import filedialog as fd
-from tkinter.messagebox import showinfo
 
 def excelwrite(dc, size):
     YN = input('Do you want to enter the data into an Excel Workbook? Y/N \n')
     if YN == 'Y' or YN == 'y':
         name = list(dc.keys())
         file = input('enter desired file name: ')
-        if file.find('.xlsx') != True:
+        if file.find('.xlsx') == -1:
             file = file + '.xlsx'
         wb = xs.Workbook(file)
         ws = wb.add_worksheet('worksheet')
@@ -24,16 +21,6 @@ def excelwrite(dc, size):
         wb.close()
         print('Your results have been entered into an excel workbook')
     return None
-
-# def getfile():
-#     root = tk.Tk()
-#     root.title('Open File Dialog')
-#     root.geometry('0x0')
-#     root.resizable(False, False)
-#     file_path = fd.askopenfilename(title='open a csv file', initialdir= '/')
-#     showinfo(title='Selected file', message=file_path)
-#     root.destroy()
-#     return file_path
 
 def main(file):
     num = input('how many days do you want? \n')
