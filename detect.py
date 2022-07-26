@@ -1,5 +1,4 @@
 import csv
-import pandas as pd
 
 class findtype:
     def __init__(self, attr=None):
@@ -10,29 +9,26 @@ class findtype:
             return 1
         elif self.attr == '安裝數':
             return 2
-        elif self.attr == 'YYYY':
+        elif self.attr == 'YYYYMMDD (UTC)':
             return 3
         else:
             return 4
 
-
-
 def getdata():
 
     result = []
-    file = "D:\Intern\project\data_scraping\demo_files\Appstore_demo.csv"
+    file = "D:\Intern\project\data_scraping\demo_files\onelink_demo.csv"
     with open(file, 'r', encoding ='utf-8') as playdata:
         data_frame = list(csv.reader(playdata))
         for row in data_frame:
             result.append(row)
-    result = result[:4]
+    result = result[:10]
     # print(result)
     return result
 
 def attr():
     id_list = getdata()
     stop = False
-    num = 0
     for id in id_list:
         for list in id:
             if list.find('安裝數') != -1:
@@ -57,12 +53,5 @@ def attr():
 
 
 
-print(attr())
-# fucker = getdata()
-# for i in fucker:
-#     for sucker in i:
-#         print(sucker.find('安裝數'))
-
-# print(findtype('安裝數').calc_result())
             
 
