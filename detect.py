@@ -1,5 +1,6 @@
 import csv
 
+
 class findtype:
     def __init__(self, attr=None):
         self.attr = attr
@@ -14,10 +15,9 @@ class findtype:
         else:
             return 4
 
-def getdata():
+def getdata(file):
 
     result = []
-    file = "D:\Intern\project\data_scraping\demo_files\onelink_demo.csv"
     with open(file, 'r', encoding ='utf-8') as playdata:
         data_frame = list(csv.reader(playdata))
         for row in data_frame:
@@ -26,9 +26,10 @@ def getdata():
     # print(result)
     return result
 
-def attr():
-    id_list = getdata()
+def attr(file):
+    id_list = getdata(file)
     stop = False
+    num = 4
     for id in id_list:
         for list in id:
             if list.find('安裝數') != -1:
@@ -48,6 +49,7 @@ def attr():
                 break
         if stop:
             break
+    
 
     return num
 
