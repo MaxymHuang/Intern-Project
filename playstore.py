@@ -29,13 +29,28 @@ def countrylist(data):
     initial = data[0]
     # print(initial)
     clist = []
-    for i in initial:
-        if i == initial[0] or i == initial[-1] or i == initial[1]:
-            continue
-        else:
-            index = i.find('：')
-            # print(index)
-            clist.append(i[index+1:])
+    lang = data[:5]
+    option = False
+    for p in lang:
+        for s in p:
+            if s.find('安裝數') != -1:
+                option = True
+                break
+    if option:
+        for i in initial:
+            if i == initial[0] or i == initial[-1] or i == initial[1]:
+                continue
+            else:
+                index = i.find('：')
+                # print(index)
+                clist.append(i[index+1:])
+    else:
+        for j in initial:
+            if j == initial[0] or j == initial[-1] or j == initial[1]:
+                continue
+            else:
+                index = j.find(':')
+                clist.append(j[index+2:])
     return clist
 
 

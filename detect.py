@@ -10,7 +10,7 @@ class findtype:
     def calc_result(self):
         if self.attr == 'Apple TV':
             return 1
-        elif self.attr == '安裝數' or self.attr == 'install base':
+        elif self.attr == '安裝數' or self.attr == 'Install base':
             return 2
         elif self.attr == 'YYYYMMDD (UTC)':
             return 3
@@ -40,8 +40,8 @@ def attr(file):
                 num = result.calc_result()
                 stop = True
                 break
-            elif list.find('install base') != -1:
-                result = findtype('install base')
+            elif list.find('Install base') != -1:
+                result = findtype('Install base')
                 num = result.calc_result()
                 stop = True
             elif list.find('Apple TV') != -1:
