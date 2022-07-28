@@ -23,7 +23,8 @@ def main():
     # print(excel_list)
     excel_merged = pd.concat(excel_list, ignore_index = True)
     # print(excel_merged)
-    excel_merged.to_excel('Weekly_Report.xlsx', index = False)
+    file_name = input('Enter a filename (suggested name: Weekly_report): \n')
+    excel_merged.to_excel(file_name, index = False)
 
 
 
