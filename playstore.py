@@ -41,7 +41,7 @@ def countrylist(data):
 
 def findhead(data, col):
     for items in data:
-        if items[col] == '-' or items[col] == '' or items[col] == '日期':
+        if items[col] == '-' or items[col] == '' or items[col] == '日期' or items[col] == 'Date':
             pass
         else:
             head = items[col]
