@@ -15,18 +15,40 @@ def ask_dir():
 
 
 def main():
-    path = ask_dir()
+    # path = ask_dir()
+    path = "D:\Intern\project\data_scraping\Test_folder"
     file_list = glob.glob(path + '/*.xlsx')
     excel_list = []
     for file in file_list:
         excel_list.append(pd.read_excel(file))
     # print(excel_list)
     excel_merged = pd.concat(excel_list, ignore_index = True)
+
+    print(excel_merged['OneLink cc'])
+
+    
+
+
+
     # print(excel_merged)
-    file_name = input('Enter a filename (suggested name: Weekly_report): \n')
-    excel_merged.to_excel(file_name, index = False)
 
 
+
+
+
+
+
+
+
+
+
+
+    # file_name = input('Enter a filename (suggested name: Weekly_report): \n')
+    # excel_merged.to_excel(file_name, index = False)
+
+
+
+main()
 
 
 
