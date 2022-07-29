@@ -25,7 +25,8 @@ def excelwrite(dc, size):
 def main(file):
     num = input('how many days do you want? \n')
     what = input('Is this CC or CV? ')
-    what_type = 'OneLink ' + what
+    winnie_the_pooh = input('Is this China (CN) or WorldWide (WW)? ')
+    what_type = 'OneLink ' + what + winnie_the_pooh
     df = pd.read_csv(file)
     if int(num) > len(df):
         print('error! input size too large')

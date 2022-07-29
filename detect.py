@@ -1,8 +1,5 @@
 import csv
 
-from numpy import true_divide
-
-
 class findtype:
     def __init__(self, attr=None):
         self.attr = attr
