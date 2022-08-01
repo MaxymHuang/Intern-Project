@@ -67,7 +67,7 @@ def main(file):
     what = input('Is this CC or CV: ')
     what_type = 'AppStore ' + what
     stats = getdata(file)
-    names = ['type', 'timespan', 'apple TV', 'Desktop', 'iPad', 'iPhone', 'iPod', 'total count']
+    names = ['type', 'timespan', 'apple TV', 'Desktop', 'iPad', 'iPhone', 'iPod', 'Total']
     numbers = countup(stats)
     downloadsum = sum(numbers)
     numbers.append(downloadsum)

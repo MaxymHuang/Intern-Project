@@ -90,7 +90,7 @@ def main(file):
     data_frame = getdata(file)
     countries = countrylist(data_frame)
     values = []
-    names = ['type', 'timespan', 'all countries']
+    names = ['type', 'timespan', 'Total']
     for i in countries:
         names.append(i)
     for i in range(len(names) - 1):
