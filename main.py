@@ -17,7 +17,6 @@ def getfile():
     root.destroy()
     return file_path
 
-
 def entry2():
     decision = input('Auto mode (A) or Manual mode? (M)\n')
     decision = decision.upper()
@@ -32,6 +31,7 @@ def entry():
     key = input('Select an action: (1) appstore file (2) playstore file (3) onelink file (4) barchart generation (5) combine excel\n')
     return int(key)
 
+
 def combine_file():
     try:
         new_merge.main()
@@ -39,8 +39,7 @@ def combine_file():
         print('goodbye!')
     except:
         print('something went wrong try again later.')
-    
-    
+
 
 def standard_operation(file, key):
     if key == 1:
@@ -75,6 +74,7 @@ def query(key):
         print('goodbye!')
         exit()
 
+
 def main():
     key = None
     decision = entry2()
@@ -94,10 +94,5 @@ def main():
 
     standard_operation(file, key)
     query(key)
-
-
-
-
-
 
 main()
