@@ -1,6 +1,5 @@
 import openpyxl as opxl
 import glob
-from pyparsing import col
 import xlsxwriter as xs
 import tkinter as tk
 from tkinter import filedialog as fd
