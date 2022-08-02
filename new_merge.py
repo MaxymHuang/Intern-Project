@@ -28,7 +28,7 @@ def main():
 
     file_list = glob.glob(path + '/*.xlsx')
     print("Select a folder where Weekly Report will output.")
-    time.sleep(3)
+    time.sleep(2)
     save_path = ask_dir()
     wb = xs.Workbook(save_path + "/Weekly_Report.xlsx")
     
