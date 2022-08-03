@@ -1,0 +1,15 @@
+requirements for python project "main.py"
+--------------------------------------------------------------
+Python version: 3.10.5
+
+Packages:
+time
+tkinter
+pandas
+csv
+matplotlib.pyplot
+xlsxwriter
+glob
+openpyxl
+
+----------------------------------------------------------------
