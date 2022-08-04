@@ -113,4 +113,4 @@ def main(file):
     
 
 
-main("D:\download\data\CV.xlsx")
+# main("D:\download\data\CV.xlsx")
