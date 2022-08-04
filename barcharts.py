@@ -40,9 +40,10 @@ def findavg(df):
     users_avg = []
     new_user_avg = []
     months = Month(dates)
-    days = months.find_days(0)
+    step = months.find_days(0)
+    index = 0
 
-    for index in range(0, size, days):
+    while index <= size:
         day = months.find_days(index)
 
         if months.check_ending(index):
@@ -52,8 +53,11 @@ def findavg(df):
         new_user_sum = sum(new_user[index:index + day])
         users_avg.append(round(users_sum / day))
         new_user_avg.append(round(new_user_sum / day))
-        days = months.find_days(index)
-    
+        
+        step = months.find_days(index + 1)
+        
+        index += step
+
     return users_avg, new_user_avg
 
 
@@ -109,4 +113,4 @@ def main(file):
     
 
 
-# main("D:\Intern\project\data\CV.xlsx")
+main("D:\download\data\CV.xlsx")
