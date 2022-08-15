@@ -2,7 +2,8 @@
 # COPYRIGHTED GOOGLE CONTENT DO NOT DISTRIBUTE
 # Copyright 2021 Google Inc. All Rights Reserved.
 
-from webbrowser import get
+# API is still in beta beware of inaccurate outputs
+
 from google.analytics.data_v1beta import BetaAnalyticsDataClient
 from google.analytics.data_v1beta.types import DateRange
 from google.analytics.data_v1beta.types import Dimension
@@ -13,15 +14,20 @@ import pandas as pd
 
 
 
-#collavision download page = 309927857, creative cast firebase = 281054280, creative cast download page = 309886486, collavision firebase = 281875252
-def run_report(property_id="281054280", start = None):
-    credentials_json_path="client_key.json"
+# collavision download page = 309927857, creative cast firebase = 281054280 
+# creative cast download page = 309886486, collavision firebase = 281875252
+
+def run_report(property_id="281054280", start = None, credentials_json_path="client_key.json"):
+    
     Dates = []
     Active_Users = []
     New_Users = []
     Months = []
 
     client = BetaAnalyticsDataClient().from_service_account_json(credentials_json_path)
+
+    # If different dimentions and metrics are desired, make sure to look up the correct schemas at 
+    # https://developers.google.com/analytics/devguides/reporting/data/v1/api-schema 
 
     request = RunReportRequest(
         property=f"properties/{property_id}",
@@ -41,6 +47,7 @@ def run_report(property_id="281054280", start = None):
         New_Users.append(int(row.metric_values[1].value))
         Months.append(int(row.dimension_values[1].value))
 
+        # uncomment this below line to check if data points are missing
         # print(row.dimension_values[0].value, row.metric_values[0].value, row.metric_values[1].value, row.dimension_values[1].value)
     
     data_frame = pd.DataFrame({"Date": Dates, "Users": Active_Users, "New users": New_Users, "month": Months})
@@ -50,13 +57,17 @@ def run_report(property_id="281054280", start = None):
 
 
 
-def get_report(decision, timespan):
+def get_report(decision, timespan, path):
 
-    ccd_code = "309886486"
+    # property IDs for CC, CV firebase as well as download page
+
+    ccd_code = "309886486" 
     cvd_code = "309927857"
     ccf_code = "281054280"
     cvf_code = "281875252"
 
+    # As of now download page api report was not needed, but could be easily implemented for future references.
+    
     if decision == 1:
         p_id = ccd_code
     elif decision == 2:
@@ -66,7 +77,7 @@ def get_report(decision, timespan):
     elif decision == 'B':
         p_id = cvf_code
     
-    report = run_report(p_id, timespan)
+    report = run_report(p_id, timespan, path)
 
     return report
     

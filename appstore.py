@@ -1,6 +1,8 @@
 import csv
 import xlsxwriter as xs
 
+# getdata opens csv file from local directory and sorts data into a list
+
 def getdata(filename):
     with open(filename, 'r', encoding='utf-8') as appdata:
         next(appdata)
@@ -9,6 +11,8 @@ def getdata(filename):
             sorted_data.pop(0)
             x = x
     return sorted_data
+
+# countup adds up the download count
 
 def countup(data):
     results = []
@@ -22,25 +26,14 @@ def countup(data):
         temp = 0
     return results
 
+# getdates gets the time interval where the data is recorded
+
 def getdates(data):
     dates = [data[0][0], data[-1][0]]
     print(dates)
     return dates
 
-def sortcsv(stats, index, instance):
-    count = 0
-    newlist = stats[3:]
-    dict = {key:val for key, val in zip(newlist[0], newlist[index])}
-    for item in list(dict.items()):
-        if item[1] == '-' or item[0] == '日期':
-            dict.pop(item[0])
-    for obj in dict:
-        dict[obj] = float(dict[obj])
-    count = sum([value for value in dict.values()])
-    if instance == 1:
-        return dict
-    if instance == 0:
-        return count
+# excelwrite writes the resulting values into a excel file
 
 def excelwrite(dc, size):
     YN = input('Do you want to enter the data into an Excel Workbook? Y/N \n')

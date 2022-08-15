@@ -7,15 +7,18 @@ from detect import attr
 import tkinter as tk
 from tkinter import filedialog as fd
 
+# getfile() handles any user file input dialog
 
 def getfile():
     root = tk.Tk()
     root.title('Open File Dialog')
     root.geometry('0x0')
     root.resizable(False, False)
-    file_path = fd.askopenfilename(title='Open a .csv file', initialdir= '/')
+    file_path = fd.askopenfilename(title='Open a file', initialdir= '/')
     root.destroy()
     return file_path
+
+# entry() and entry2() handles user decision which dictates how the program works entirely
 
 def entry2():
     decision = input('Auto mode (A) or Manual mode? (M)\n')
@@ -31,6 +34,7 @@ def entry():
     key = input('Select an action: (1) appstore file (2) playstore file (3) onelink file (4) barchart generation (5) combine excel\n')
     return int(key)
 
+# combine_file calls new_merge.py script that essentially combines all the output excel files
 
 def combine_file():
     try:
@@ -40,6 +44,7 @@ def combine_file():
     except:
         print('something went wrong try again later.')
 
+# standard operation takes in 2 values file and key. File is where the specified file is 
 
 def standard_operation(file, key):
     if key == 1:
@@ -57,6 +62,7 @@ def standard_operation(file, key):
         print('Error! Invalid input. Please enter a valid number.')
         main()
 
+# query askes user if the user wants to process another file or end the program
 
 def query(key):
     query = input('do you want to process another file? Y/N\n')
@@ -74,6 +80,7 @@ def query(key):
         print('goodbye!')
         exit()
 
+# main function calls and execute most of the requests
 
 def main():
     key = None
@@ -90,13 +97,13 @@ def main():
         combine_file()
         query(key)
     elif key == 4:
-        ask = input('Manual mode (M) or Auto mode (A)')
-        ask = ask.upper()
+        ask = entry2()
         if ask == 'M':
             file = getfile()
             barcharts.main('M', file)
         else:
-            barcharts.main('A')
+            keyfile_path = getfile()
+            barcharts.main('A', keyfile=keyfile_path)
     elif key != 5 and decision == 'M':
         file = getfile('A')
         standard_operation(file, key)

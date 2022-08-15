@@ -2,6 +2,11 @@ import matplotlib.pyplot as plt
 import pandas as pd
 import googleapi
 
+# Class 'Month' calculates how many days are there to the corresponding month value
+# as well as checking if the data is ending.
+
+# Note that Leap year scenario is not considered. Must be updated by 2024.
+
 class Month:
     def __init__(self, month_list):
         self.month_list = month_list
@@ -30,7 +35,10 @@ class Month:
             return True
         else:
             return False
-            
+
+# The way barplot represents the data sets is by calculating the average user count of each months
+# and present it by using stacked barplot of each months of active users and new users
+
 def findavg(df):
     new_user = df['New users']
     users = df['Users']
@@ -63,7 +71,7 @@ def findavg(df):
 
 
     
-    
+# findmonthlist() determines which months are included from the inputs
 
 def findmonthlist(df):
     month_name = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'July', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
@@ -83,17 +91,22 @@ def findmonthlist(df):
 
     return sortedlist
 
+# main function takes in 3 inputs, 'decide' decides whether the user wants to use API or not
+# 'keyfile' indicates the location of the API key, 'file' indicates the location of the data sets (not required for API option)
 
-def main(decide = 'M', file=None):
+def main(decide = 'M', keyfile ='client_key.json', file = None):
 
     if decide == 'A':
         type = input('Which source does the barplot correspond to? CC firebase (A) CV firebase (B)? ')
         type = type.upper()
+
+        # start_date has to be input in exact YYYY-MM-DD format for API to work
+
         start_date = input('Please enter start date (YYYY-MM-DD): ')
         while start_date.find('-') != 4:
             start_date = input('Please enter start date (YYYY-MM-DD): ')
         
-        df = googleapi.get_report(type, start_date)
+        df = googleapi.get_report(type, start_date, keyfile)
 
     else:
         df = pd.read_excel(file)
@@ -108,7 +121,8 @@ def main(decide = 'M', file=None):
         avg_user = avg_user[-12:]
         months = months[-12:]
     
-    
+    # Formats the barplot
+
     plt.rcParams["figure.figsize"] = (22, 14)
     plt.rcParams.update({'font.size': 22})
     p1 = plt.bar(months, avg_new, color = '#A4AEC9')
@@ -122,6 +136,9 @@ def main(decide = 'M', file=None):
     for i in range(len(months)):
         plt.text(i, avg_user[i]+4, avg_user[i], ha = 'center')
         plt.text(i, avg_new[i]/2.5, avg_new[i], ha = 'center')
+
+    # Presents the output to user
+
     plt.show()
     
 
