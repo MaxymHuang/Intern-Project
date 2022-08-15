@@ -1,6 +1,8 @@
 import pandas as pd
 import xlsxwriter as xs
 
+# excelwrite writes the results into and excel workbook
+
 def excelwrite(dc, size):
     YN = input('Do you want to enter the data into an Excel Workbook? Y/N \n')
     if YN == 'Y' or YN == 'y':
@@ -21,6 +23,9 @@ def excelwrite(dc, size):
         wb.close()
         print('Your results have been entered into an excel workbook')
     return None
+
+# main function takes in file as an input and convert it into a pandas dataframe
+# using the dataframe it calculates the sum of the values and outputs a dictionary style results
 
 def main(file):
     num = input('how many days do you want? \n')

@@ -6,6 +6,9 @@ from tkinter import filedialog as fd
 import pandas as pd
 import time
 
+# ask_dir asks user to open a folder where all the excel output is located
+# and returns the folder's location
+
 def ask_dir():
     root = tk.Tk()
     root.title('Open File Dialog')
@@ -14,6 +17,8 @@ def ask_dir():
     path = fd.askdirectory(title = 'Open a file', initialdir = '/', mustexist = True)
     root.destroy()
     return path
+
+# find_length returns the length of the file as dataframe + 2 for formatting purposes
 
 def find_length(file):
     df = pd.read_excel(file)
@@ -33,16 +38,20 @@ def main():
     
     ws = wb.add_worksheet("Report")
     k = 1
+
+    # this triple inbedded loop could be optimized in the future as it obtains a quite inefficient runtime
+    # this triple inbedded loop loops through each output file and each output file's data
+
+    # while this is a triple loop, it obtains a O(n^2) run time since the inner loop is constant value
+
     for file in file_list:
         wb_obj = opxl.load_workbook(file)
         s_obj = wb_obj.active
         length = find_length(file)
-        # print(length)
         for i in range(1, length):
             for j in range(1,3):
                 cell = s_obj.cell(row = i, column = j)
                 value = cell.value
-                # print(value)
                 ws.write(k, j, value)
             k += 1
     wb.close()

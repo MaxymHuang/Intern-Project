@@ -1,5 +1,11 @@
 import csv
 
+# This script is a fundamental to automation that affects the whole process
+
+# Class 'findtype' essentially determines which platform does the input file come from
+# by using each file formatting differences and their characteristics
+
+
 class findtype:
     def __init__(self, attr=None):
         self.attr = attr
@@ -14,6 +20,10 @@ class findtype:
         else:
             return print("invalid file please try again")
 
+# getdata in this script uses the same getdata UDF in other file like appstore.py
+# the only difference is that it only reads very few values since its purpose is 
+# to determine the type of the file
+
 def getdata(file):
     result = []
     if file.find('.xlsx') != -1:
@@ -25,6 +35,9 @@ def getdata(file):
                 result.append(row)
         result = result[:10]
     return result
+
+# attr takes in 'file' as an input and processes which type the 'file'
+# correspondes to and returns a number that represents the type of file.
 
 def attr(file):
     id_list = getdata(file)

@@ -1,6 +1,8 @@
 import csv
 import xlsxwriter as xs
 
+# getdata gets data from input and sort it into a list
+
 def getdata(file):
     try:
         result = []
@@ -14,6 +16,9 @@ def getdata(file):
     # print(result)
     return result
 
+# since playstore uses cumulative download count, only the latest value is taken into account
+# findtail finds the 'tail' of the data set
+
 def findtail(data, col):
     for items in reversed(data):
         if items[col] == '-' or items[col] == '':
@@ -24,6 +29,8 @@ def findtail(data, col):
     if col != 0:
         tail = int(tail)
     return tail
+
+# since top country may subject to change, countrylist detects which country were taken into account
 
 def countrylist(data):
     initial = data[0]
@@ -53,6 +60,7 @@ def countrylist(data):
                 clist.append(j[index+2:])
     return clist
 
+# findhead is essentially used to find the starting date of the data recorded
 
 def findhead(data, col):
     for items in data:
@@ -62,6 +70,8 @@ def findhead(data, col):
             head = items[col]
             break
     return head
+
+# excelwrite writes the results into an excel file
 
 def excelwrite(dc, size):
     YN = input('Do you want to enter the data into an Excel Workbook? Y/N \n')
@@ -83,6 +93,8 @@ def excelwrite(dc, size):
         wb.close()
         print('Your results have been entered into an excel workbook')
     return None
+
+# main executes and process the input and provides an output
 
 def main(file):
     what = input('Is this CC or CV: ')
