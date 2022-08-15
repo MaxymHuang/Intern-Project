@@ -1,0 +1,19 @@
+requirements for python project "main.py"
+--------------------------------------------------------------
+Python version: 3.10.5
+
+Packages:
+time
+tkinter
+pandas
+csv
+matplotlib.pyplot
+xlsxwriter
+glob
+openpyxl
+
+% For google API %
+google analytics data packages required
+google cloud SDK authentication required
+A client_key.json is required (API token with a valid service account)
+----------------------------------------------------------------
