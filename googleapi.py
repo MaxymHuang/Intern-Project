@@ -1,6 +1,5 @@
 # INTERNAL USE ONLY
-# COPYRIGHTED GOOGLE CONTENT DO NOT DISTRIBUTE
-# Copyright 2021 Google Inc. All Rights Reserved.
+
 
 # API is still in beta beware of inaccurate outputs
 
@@ -14,10 +13,9 @@ import pandas as pd
 
 
 
-# collavision download page = 309927857, creative cast firebase = 281054280 
-# creative cast download page = 309886486, collavision firebase = 281875252
 
-def run_report(property_id="281054280", start = None, credentials_json_path="client_key.json"):
+
+def run_report(property_id=" ", start = None, credentials_json_path="client_key.json"):
     
     Dates = []
     Active_Users = []
@@ -61,10 +59,10 @@ def get_report(decision, timespan, path):
 
     # property IDs for CC, CV firebase as well as download page
 
-    ccd_code = "309886486" 
-    cvd_code = "309927857"
-    ccf_code = "281054280"
-    cvf_code = "281875252"
+    ccd_code = " " 
+    cvd_code = " "
+    ccf_code = " "
+    cvf_code = " "
 
     # As of now download page api report was not needed, but could be easily implemented for future references.
     
